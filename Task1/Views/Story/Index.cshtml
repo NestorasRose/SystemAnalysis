@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Task1.Models.Story>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+<table id="dtable" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.name)
+                </td>
+                <td>
+                    @Html.Raw(item.description)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
+                    @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "fa fa-info-circle fa-2x" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
+                    @Html.ActionLink(" ", "Index", "Task", new { id = item.id }, htmlAttributes: new { @class = "fa fa-tasks fa-2x" })
+                    @Html.ActionLink(" ", "Index", "Diagram", new { id = item.id }, htmlAttributes: new { @class = "fa fa-bar-chart fa-2x" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready(function () {
+        $('#dtable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    text: 'Create New',
+                    className: 'btn btn-primary',
+                    action: function (e, dt, node, config) {
+                        window.location.href += '/Create/';
+                    }
+                }
+            ]});
+    });
+</script>

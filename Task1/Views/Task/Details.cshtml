@@ -1,0 +1,64 @@
+﻿@model Task1.Models.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.why)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.why)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.what)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.what)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.how)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.how)
+        </dd>
+        <dt>
+            <p>Files</p>
+        </dt>
+        <ol>
+            @foreach (var file in Model.Files)
+            {
+              <dd>
+                <li>
+                  @Html.Raw(file.Name)
+                </li>
+              </dd>
+            }
+        </ol>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.StoryId })
+</p>

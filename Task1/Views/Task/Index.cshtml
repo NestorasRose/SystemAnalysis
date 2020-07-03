@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Task1.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+    var storyId = Request.Url.Segments.Last();
+}
+
+<h2>Tasks</h2>
+
+<table id="dtable" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Files)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.name)
+                </td>
+                <td>
+                    <ol>
+                        @foreach (var file in item.Files)
+                        {
+                            <li>
+                                @Html.Raw(file.Name)
+                            </li>
+                        }
+                    </ol>
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
+                    @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "fa fa-info-circle fa-2x" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
+                    @Html.ActionLink(" ", "Index", "File", new { storyId = item.StoryId, taskId = item.id }, htmlAttributes: new { @class = "fa fa-file-code-o fa-2x" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to Stories", "Index", "Story")
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dtable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    text: 'Create New',
+                    className: 'btn btn-primary',
+                    action: function (e, dt, node, config) {
+                        window.location.href = 'https://localhost:44343/Task/Create?storyId=' + @storyId;
+                    }
+                }
+            ]
+        });
+    });
+</script>

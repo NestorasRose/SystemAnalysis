@@ -1,0 +1,43 @@
+﻿@model Task1.Models.File
+
+@{
+    ViewBag.Title = "Details";
+    var storyId = Request.QueryString["storyId"];
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>File</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileType)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.FileType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, storyId = storyId, taskId = Model.TaskId }) |
+    @Html.ActionLink("Back to List", "Index", new { storyId = storyId, taskId = Model.TaskId })
+</p>
