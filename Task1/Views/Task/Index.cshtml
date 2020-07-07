@@ -36,7 +36,7 @@
                         }
                     </ol>
                 </td>
-                <td>
+                <td style="min-width: 150px">
                     @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
                     @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "fa fa-info-circle fa-2x" })
                     @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
@@ -64,6 +64,25 @@
                     }
                 }
             ]
+        });
+    });
+
+    $(function () {
+        $(".fa-pencil-square-o").tooltip({
+            placement: "top",
+            title: "Edit"
+        });
+        $(".fa-info-circle").tooltip({
+            placement: "top",
+            title: "Details"
+        });
+        $(".fa-trash-o").tooltip({
+            placement: "top",
+            title: "Delete"
+        });
+        $(".fa-file-code-o").tooltip({
+            placement: "top",
+            title: "Files"
         });
     });
 </script>

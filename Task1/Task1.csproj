@@ -139,6 +139,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DiagramController.cs" />
     <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaveController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -202,6 +203,10 @@
     <Compile Include="Migrations\202007030856088_AddTaskCascadeOnDelete.cs" />
     <Compile Include="Migrations\202007030856088_AddTaskCascadeOnDelete.designer.cs">
       <DependentUpon>202007030856088_AddTaskCascadeOnDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007060937404_addTaskETA.cs" />
+    <Compile Include="Migrations\202007060937404_addTaskETA.designer.cs">
+      <DependentUpon>202007060937404_addTaskETA.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\File.cs" />
@@ -524,7 +529,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Task\Create.cshtml" />
     <Content Include="Views\Task\Delete.cshtml" />
-    <Content Include="Views\Task\Details.cshtml" />
     <Content Include="Views\Task\Edit.cshtml" />
     <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\File\Create.cshtml" />
@@ -534,10 +538,12 @@
     <Content Include="Views\File\Index.cshtml" />
     <Content Include="Views\Story\Create.cshtml" />
     <Content Include="Views\Story\Delete.cshtml" />
-    <Content Include="Views\Story\Details.cshtml" />
     <Content Include="Views\Story\Edit.cshtml" />
     <Content Include="Views\Story\Index.cshtml" />
     <Content Include="Views\Diagram\Index.cshtml" />
+    <Content Include="Views\Story\Home.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Task\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -597,6 +603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007030856088_AddTaskCascadeOnDelete.resx">
       <DependentUpon>202007030856088_AddTaskCascadeOnDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060937404_addTaskETA.resx">
+      <DependentUpon>202007060937404_addTaskETA.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

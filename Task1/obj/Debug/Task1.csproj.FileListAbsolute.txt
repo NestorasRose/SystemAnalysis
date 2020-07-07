@@ -102,3 +102,4 @@ C:\Users\falexandrou\source\repos\Task1\Task1\bin\System.Web.Http.WebHost.xml
 C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddStory.resources
 C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddStoryDiagram.resources
 C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddTaskCascadeOnDelete.resources
+C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.addTaskETA.resources

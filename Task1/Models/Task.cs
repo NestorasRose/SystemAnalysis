@@ -25,6 +25,9 @@ namespace Task1.Models
         [AllowHtml]
         [Required]
         public string how { get; set; }
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int eta { get; set; }
         [AllowHtml]
         public virtual ICollection<File> Files { get; set; }
         public int? StoryId { get; set; }

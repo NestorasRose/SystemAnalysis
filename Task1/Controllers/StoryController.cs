@@ -26,20 +26,6 @@ namespace Task1.Controllers
             return View(db.Stories.Where(s => s.id == id).FirstOrDefault().diagram);
         }
 
-        // GET: Stories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Story story = db.Stories.Find(id);
-            if (story == null)
-            {
-                return HttpNotFound();
-            }
-            return View(story);
-        }
 
         // GET: Stories/Create
         public ActionResult Create()

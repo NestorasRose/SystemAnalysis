@@ -3,10 +3,11 @@
     ViewBag.Title = "Index";
 }
 
-<div id="content" class="embed-responsive embed-responsive-4by3">
-    <iframe id="iframe" embed-responsive-item src="/jgraph/examples/grapheditor/www/index.html"></iframe>
-</div>
-
+    <div class="row">
+        <div id="content" class="embed-responsive embed-responsive-4by3">
+            <iframe id="iframe" embed-responsive-item src="/jgraph/examples/grapheditor/www/index.html"></iframe>
+        </div>
+    </div>
 <script>
     var diagram = '@Html.Raw(Model.diagram)';
     var diagramName = "story" + @Model.id + "_diagram.xml"
@@ -52,7 +53,6 @@
                 if (response != null) {
                     localStorage.removeItem(event.key);
                     location.reload();
-                    alert("Saved Drawing!");
                 } else {
                     alert("Something went wrong");
                 }

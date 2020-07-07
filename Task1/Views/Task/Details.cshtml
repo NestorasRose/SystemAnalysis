@@ -42,16 +42,23 @@
             @Html.Raw(Model.how)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.eta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eta) hours
+        </dd>
+        <dt>
             <p>Files</p>
         </dt>
         <ol>
             @foreach (var file in Model.Files)
             {
-              <dd>
+                <dd>
                 <li>
-                  @Html.Raw(file.Name)
+                    @Html.Raw(file.Name)
                 </li>
-              </dd>
+                </dd>
             }
         </ol>
 
