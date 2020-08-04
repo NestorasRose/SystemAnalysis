@@ -17,6 +17,9 @@ namespace Task1.Models
         [AllowHtml]
         [Required]
         public string description { get; set; }
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int iteration { get; set; }
         [AllowHtml]
         public string diagram { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }

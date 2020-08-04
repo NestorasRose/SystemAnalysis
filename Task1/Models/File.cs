@@ -24,7 +24,7 @@ namespace Task1.Models
         public string Description { get; set; }
 
         public int? TaskId { get; set; }
-        public Task Task { get; set; }
+        public virtual Task Task { get; set; }
 
     }
 }

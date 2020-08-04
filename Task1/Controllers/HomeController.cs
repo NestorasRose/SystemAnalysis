@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Task1.DAL;
+using Task1.Models;
 
 namespace Task1.Controllers
 {
@@ -16,76 +17,22 @@ namespace Task1.Controllers
             return View(db.Stories.ToList());
         }
 
-        // GET: Home/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Search(string searchString)
         {
-            return View();
-        }
 
-        // GET: Home/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+            var stories = db.Stories.Where(s => s.name.Contains(searchString)).ToList();
 
-        // POST: Home/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+            var tasks = db.Tasks.Where(t => t.name.Contains(searchString)
+            || t.what.Contains(searchString) 
+            || t.why.Contains(searchString) 
+            || t.how.Contains(searchString)).ToList();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var files = db.Files.Where(f => f.Name.Contains(searchString)
+            || f.Description.Contains(searchString)
+            || f.FileType.ToString().Contains(searchString)).ToList();
 
-        // GET: Home/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Home/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Search search = new Search() { stories = stories, tasks = tasks, files = files };
+            return View(search);
         }
     }
 }

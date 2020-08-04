@@ -5,84 +5,83 @@
     var storyId = Request.Url.Segments.Last();
 }
 
-<h2>Tasks</h2>
+@Styles.Render("~/Content/datatable")
+@Scripts.Render("~/bundles/font-awesome")
+@Scripts.Render("~/bundles/datatable")
 
-<table id="dtable" class="display">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Files)
-            </th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.Raw(item.name)
-                </td>
-                <td>
-                    <ol>
-                        @foreach (var file in item.Files)
-                        {
-                            <li>
-                                @Html.Raw(file.Name)
-                            </li>
-                        }
-                    </ol>
-                </td>
-                <td style="min-width: 150px">
-                    @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
-                    @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "fa fa-info-circle fa-2x" })
-                    @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
-                    @Html.ActionLink(" ", "Index", "File", new { storyId = item.StoryId, taskId = item.id }, htmlAttributes: new { @class = "fa fa-file-code-o fa-2x" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@using System.Text.RegularExpressions;
 
-<div>
-    @Html.ActionLink("Back to Stories", "Index", "Story")
-</div>
+@helper StripHTML(string input)
+{
+    if (!string.IsNullOrEmpty(input))
+    {
+        input = Regex.Replace(input, "<.*?>", String.Empty);
+        <span>@input</span>
+    }
+}
 
-<script>
-    $(document).ready(function () {
-        $('#dtable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
+
+<div class="panel panel-primary" style="margin-top:3vh">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <h2>Tasks</h2>
+        </div>
+    </div>
+    <div class="panel-body well" style="margin-bottom: 0">
+        <table id="dtable" class="display">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Files)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    text: 'Create New',
-                    className: 'btn btn-primary',
-                    action: function (e, dt, node, config) {
-                        window.location.href = 'https://localhost:44343/Task/Create?storyId=' + @storyId;
-                    }
+                    <tr>
+                        <td>
+                            @StripHTML(item.name)
+                        </td>
+                        <td>
+                            <ol>
+                                @foreach (var file in item.Files)
+                                {
+                                    <li>
+                                        @StripHTML(file.Name)
+                                    </li>
+                                }
+                            </ol>
+                        </td>
+                        <td style="min-width: 150px">
+                            @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-warning fa fa-pencil fa-lg" })
+                            @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-success fa fa-info-circle fa-lg" })
+                            @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-danger fa fa-trash-o fa-lg" })
+                            @Html.ActionLink(" ", "Index", "File", new { storyId = item.StoryId, taskId = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-primary fa fa-file-code-o fa-lg" })
+                        </td>
+                    </tr>
                 }
-            ]
-        });
-    });
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to Stories", "Index", "Story")
+    </div>
+
+    <script>
+    var nextLocation = '/Task/Create?storyId=@storyId';
 
     $(function () {
-        $(".fa-pencil-square-o").tooltip({
-            placement: "top",
-            title: "Edit"
-        });
-        $(".fa-info-circle").tooltip({
-            placement: "top",
-            title: "Details"
-        });
-        $(".fa-trash-o").tooltip({
-            placement: "top",
-            title: "Delete"
-        });
         $(".fa-file-code-o").tooltip({
             placement: "top",
             title: "Files"
         });
     });
-</script>
+    </script>
+    <script src="~/Scripts/datatable-button-tooltip.js"></script>
+

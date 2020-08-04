@@ -31,6 +31,6 @@ namespace Task1.Models
         [AllowHtml]
         public virtual ICollection<File> Files { get; set; }
         public int? StoryId { get; set; }
-        public Story story { get; set; }
+        public virtual Story story { get; set; }
     }
 }

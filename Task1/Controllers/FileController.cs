@@ -25,10 +25,7 @@ namespace Task1.Controllers
         // GET: Files/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             File file = db.Files.Find(id);
             if (file == null)
             {
@@ -66,10 +63,6 @@ namespace Task1.Controllers
         // GET: Files/Edit/1/1
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             File file = db.Files.Find(id);
             if (file == null)
             {
@@ -97,10 +90,6 @@ namespace Task1.Controllers
         // GET: Files/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             File file = db.Files.Find(id);
             if (file == null)
             {

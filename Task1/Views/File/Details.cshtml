@@ -10,34 +10,38 @@
 <div>
     <h4>File</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.Raw(Model.Name)
-        </dd>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3>@Html.Raw(Model.Name)</h3>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.Description)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.Description)
+            </div>
+        </div>
 
-        <dd>
-            @Html.Raw(Model.Description)
-        </dd>
+        <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FileType)
-        </dt>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.FileType)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.FileType)
+            </div>
+        </div>
 
-        <dd>
-            @Html.Raw(Model.FileType)
-        </dd>
+        <div class="panel-footer">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id, storyId = storyId, taskId = Model.TaskId }) |
+            @Html.ActionLink("Back to List", "Index", new { storyId = storyId, taskId = Model.TaskId })
+        </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, storyId = storyId, taskId = Model.TaskId }) |
-    @Html.ActionLink("Back to List", "Index", new { storyId = storyId, taskId = Model.TaskId })
-</p>
+    </div>
+    </div>

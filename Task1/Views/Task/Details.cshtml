@@ -9,63 +9,78 @@
 <div>
     <h4>Task</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+ 
 
-        <dd>
-            @Html.Raw(Model.name)
-        </dd>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3>@Html.Raw(Model.name)</h3>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.why)
-        </dt>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.why)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.why)
+            </div>
+        </div>
 
-        <dd>
-            @Html.Raw(Model.why)
-        </dd>
+        <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.what)
-        </dt>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.what)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.what)
+            </div>
+        </div>
 
-        <dd>
-            @Html.Raw(Model.what)
-        </dd>
+        <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.how)
-        </dt>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.how)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.how)
+            </div>
+        </div>
 
-        <dd>
-            @Html.Raw(Model.how)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.eta)
-        </dt>
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.eta) hours
-        </dd>
-        <dt>
-            <p>Files</p>
-        </dt>
-        <ol>
-            @foreach (var file in Model.Files)
-            {
-                <dd>
-                <li>
-                    @Html.Raw(file.Name)
-                </li>
-                </dd>
-            }
-        </ol>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.eta)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.eta)
+            </div>
+        </div>
 
+        <hr />
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index", new { id = Model.StoryId })
-</p>
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.Files)</h4>
+            </div>
+            <div class="col-md-10">
+                <ol class="well">
+                    @foreach (var file in Model.Files)
+                    {
+                        <li>
+                            @Html.Raw(file.Name)
+                        </li>
+                    }
+                </ol>
+            </div>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Back to List", "Index", new { id = Model.StoryId })
+        </div>
+    </div>
+
+    </div>

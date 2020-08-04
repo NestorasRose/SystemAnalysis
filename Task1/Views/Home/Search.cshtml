@@ -1,0 +1,155 @@
+﻿@model Task1.Models.Search
+@{
+    ViewBag.Title = "View";
+    var numStories = Model.stories.Count;
+    var numTasks = Model.tasks.Count;
+    var numFiles = Model.files.Count;
+}
+
+@Styles.Render("~/Content/datatable")
+@Scripts.Render("~/bundles/font-awesome")
+@Scripts.Render("~/bundles/datatable")
+
+
+@if (numStories > 0)
+{
+    <h1><strong>Stories</strong></h1>
+
+
+    <table id="dtableStories" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.stories.First().name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.stories.First().description)
+                </th>
+                <th>
+                    ETA (hours)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.stories.First().iteration)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.stories)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw(item.name)
+                    </td>
+                    <td>
+                        @Html.Raw(item.description)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Tasks.Sum(task => task.eta))
+                    </td>
+                    <td>
+                        @Html.Raw(item.iteration)
+                    </td>
+                    <td style="min-width: 150px">
+                        @Html.ActionLink(" ", "Edit", "Story", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
+                        @Html.ActionLink(" ", "Delete", "Story", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
+                        @Html.ActionLink(" ", "Index", "Task", new { id = item.id }, htmlAttributes: new { @class = "fa fa-tasks fa-2x" })
+                        @Html.ActionLink(" ", "Index", "Diagram", new { id = item.id }, htmlAttributes: new { @class = "fa fa-bar-chart fa-2x" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br />
+@if (numTasks > 0)
+{
+    <h1><strong>Tasks</strong></h1>
+
+    <table id="dtableTasks" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.tasks.First().name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tasks.First().Files)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.tasks)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw(item.name)
+                    </td>
+                    <td>
+                        <ol>
+                            @foreach (var file in item.Files)
+                            {
+                                <li>
+                                    @Html.Raw(file.Name)
+                                </li>
+                            }
+                        </ol>
+                    </td>
+                    <td style="min-width: 150px">
+                        @Html.ActionLink(" ", "Edit", "Task", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
+                        @Html.ActionLink(" ", "Details", "Task", new { id = item.id }, htmlAttributes: new { @class = "fa fa-info-circle fa-2x" })
+                        @Html.ActionLink(" ", "Delete", "Task", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
+                        @Html.ActionLink(" ", "Index", "File", new { storyId = item.StoryId, taskId = item.id }, htmlAttributes: new { @class = "fa fa-file-code-o fa-2x" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<br />
+@if (numFiles > 0)
+{
+    <h1><strong>Files</strong></h1>
+
+    <table class="display" id="dtableFiles">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.files.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.files.First().Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.files.First().FileType)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.files)
+            {
+                var storyId = item.Task.StoryId;
+                <tr>
+                    <td>
+                        @Html.Raw(item.Name)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileType)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", "File", new { id = item.Id, storyId = storyId, taskId = item.TaskId }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
+                        @Html.ActionLink(" ", "Details", "File", new { id = item.Id, storyId = storyId, taskId = item.TaskId }, htmlAttributes: new { @class = "fa fa-info-circle fa-2x" })
+                        @Html.ActionLink(" ", "Delete", "File", new { id = item.Id, storyId = storyId, taskId = item.TaskId }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script src="~/Scripts/search-datatable-tooltip.js"></script>

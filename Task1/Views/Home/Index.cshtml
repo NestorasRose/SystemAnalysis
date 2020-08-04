@@ -4,35 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<style>
-    *, *:before, *:after {
-        box-sizing: border-box !important;
-    }
+@{ var stories = Model.Select(s => s.name).ToList();}
+
+@Styles.Render("~/Content/masonry")
+@Styles.Render("~/Content/aos")
+@Scripts.Render("~/bundles/aos")
 
 
-    .row {
-        -moz-column-width: 18em;
-        -webkit-column-width: 18em;
-        -moz-column-gap: 1em;
-        -webkit-column-gap: 1em;
-    }
-
-    .item {
-        display: inline-block;
-        padding: .25rem;
-        width: 100%;
-    }
-
-    .well {
-        position: relative;
-        display: block;
-    }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<h2>Stories</h2>
-
-<div class="container-fluid">
-    <div class="row" style="max-width:60%; float:left">
+    <div class="container-fluid">
+        <div class="col-md-4">
+            <h2>Stories</h2>
+        </div>
+        <div class="col-md-4 text-right">
+            <h2>Charts</h2>
+        </div>
+        <div class="row" style="max-width:60%; float: left">
 
             @for (var i = 0; i <= 8; i++)
             {
@@ -45,79 +31,58 @@
                             @Html.Raw(item.description)
                         </div>
                     </div>
-
                 }
             }
         </div>
-    <div class="col-lg-12" style="max-width:40%; float:right">
-        <h2>Charts</h2>
-        <div id="chart" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">Hours of Week 272</div>
-        <hr />
-        <div id="chart2" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">Hours of January</div>
-        <hr />
-        <div id="chart3" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">Hours Per Story</div>
-        <hr />
-        <div id="chart4" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">Hours left</div>
 
-    </div>
-        
+        <div class="col-lg-12" style="max-width:40%; float:right">
 
-    </div>
-<script>
-    AOS.init();
+            <div class="panel panel-primary" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                <div class="panel-heading">
+                    All Story Hours
+                </div>
+                <div id="chart"></div>
+            </div>
 
-    var options = {
-        chart: {
-            type: 'line'
-        },
-        series: [{
-            name: 'sales',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-        }],
-        xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-        }
-    }
+            <div class="panel panel-primary" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                <div class="panel-heading">
+                    Hours of January
+                </div>
+                <div id="chart2"></div>
+            </div>
 
-    var options2 = {
-        chart: {
-            type: 'candlestick'
-        },
-        series: [{
-            data: [{
-                x: new Date(2016, 01, 01),
-                y: [51.98, 56.29, 51.59, 53.85]
-            },
-            {
-                x: new Date(2016, 02, 01),
-                y: [53.66, 54.99, 51.35, 52.95]
-            },
-  {
-                x: new Date(2016, 08, 01),
-                y: [52.76, 57.35, 52.15, 57.03]
-            }]
-        }],
-        plotOptions: {
-            candlestick: {
-                colors: {
-                    upward: '#3C90EB',
-                    downward: '#DF7D46'
+            <div class="panel panel-primary" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                <div class="panel-heading">
+                    Hours Per Iteration
+                </div>
+                <div id="chart3" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000"></div>
+            </div>
+
+            <div class="panel panel-primary" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                <div class="panel-heading">
+                    Hours left
+                </div>
+                <div id="chart4" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000"></div>
+            </div>
+            <hr />
+            <br />
+            <div class="row">
+                @for (var i = 0; i <= 2; i++)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="item" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                            <div class="well">
+                                @Html.Raw(item.name)
+                                <hr />
+                                @Html.Raw(item.description)
+                            </div>
+                        </div>
+                    }
                 }
-            }
-        }
+            </div>
+        </div>
 
-    }
+        </div>
 
-
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-    var chart3 = new ApexCharts(document.querySelector("#chart3"), options);
-    var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
-
-    chart.render();
-    chart2.render();
-    chart3.render();
-    chart4.render();
-
-</script>
+@Scripts.Render("~/bundles/chart")

@@ -17,25 +17,15 @@ namespace Task1.Controllers
         private TaskContext db = new TaskContext();
 
         // GET: Task
-        public ActionResult Index(int? id)
+        public ActionResult Index(int id)
         {
-            if (id == null)
-            {
-                return View(db.Tasks.ToList());
-            }
-
             return View(db.Stories.Where(t => t.id == id).FirstOrDefault().Tasks.ToList());
-
         }
 
 
         // GET: Tasks/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Task task = db.Tasks.Find(id);
             if (task == null)
             {
@@ -70,10 +60,6 @@ namespace Task1.Controllers
         // GET: Tasks/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == 0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Task task = db.Tasks.Find(id);
             if (task == null)
             {
@@ -103,10 +89,6 @@ namespace Task1.Controllers
         // GET: Tasks/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Task task = db.Tasks.Find(id);
             if (task == null)
             {
@@ -124,7 +106,7 @@ namespace Task1.Controllers
             var storyId = task.StoryId;
             db.Tasks.Remove(task);
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = task.StoryId });
+            return RedirectToAction("Index", new { id = storyId });
         }
 
         protected override void Dispose(bool disposing)

@@ -103,3 +103,4 @@ C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddStor
 C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddStoryDiagram.resources
 C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddTaskCascadeOnDelete.resources
 C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.addTaskETA.resources
+C:\Users\falexandrou\source\repos\Task1\Task1\obj\Debug\Task1.Migrations.AddStoryIteration.resources

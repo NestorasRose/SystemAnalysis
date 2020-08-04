@@ -10,40 +10,54 @@
 <div>
     <h4>Task</h4>
     <hr />
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.why)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.why)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.what)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.what)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.how)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.how)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3>@Html.Raw(Model.name)</h3>
+            </div>
         </div>
-    }
+
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.why)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.why)
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.what)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.what)
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.how)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.how)
+            </div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="panel-footer form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index", new { id = Model.StoryId })
+            </div>
+        }
+
+    </div>
 </div>

@@ -4,72 +4,78 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@Styles.Render("~/Content/datatable")
+@Scripts.Render("~/bundles/font-awesome")
+@Scripts.Render("~/bundles/datatable")
 
-<table id="dtable" class="display">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.description)
-            </th>
-            <th>
-                ETA (hours)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.Raw(item.name)
-            </td>
-            <td>
-                @Html.Raw(item.description)
-            </td>
-            <td>
-                @Html.Raw(item.Tasks.Sum(task => task.eta))
-            </td>
-            <td style="min-width: 150px">
-                @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "fa fa-pencil-square-o fa-2x" })
-                @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "fa fa-trash-o fa-2x" })
-                @Html.ActionLink(" ", "Index", "Task", new { id = item.id }, htmlAttributes: new { @class = "fa fa-tasks fa-2x" })
-                @Html.ActionLink(" ", "Index", "Diagram", new { id = item.id }, htmlAttributes: new { @class = "fa fa-bar-chart fa-2x" })
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+@using System.Text.RegularExpressions;
 
+@helper StripHTML(string input)
+{
+    if (!string.IsNullOrEmpty(input))
+    {
+        input = Regex.Replace(input, "<.*?>", String.Empty);
+        <span>@input</span>
+    }
+}
+
+<div class="panel panel-primary" style="margin-top:3vh">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <h2>Stories</h2>
+        </div>
+    </div>
+    <div class="panel-body well" style="margin-bottom: 0">
+        <table id="dtable" class="display">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.description)
+                    </th>
+                    <th>
+                        ETA(hours)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.iteration)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @StripHTML(item.name)
+                        </td>
+                        <td>
+                            @StripHTML(item.description)
+                        </td>
+                        <td>
+                            @Html.Raw(item.Tasks.Sum(task => task.eta))
+                        </td>
+                        <td>
+                            @Html.Raw(item.iteration)
+                        </td>
+                        <td style="min-width: 200px">
+                            @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-warning fa fa-pencil fa-lg" })
+                            @Html.ActionLink(" ", "Delete", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-danger fa fa-trash-o fa-lg" })
+                            @Html.ActionLink(" ", "Index", "Task", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-primary fa fa-tasks fa-lg" })
+                            @Html.ActionLink(" ", "Index", "Diagram", new { id = item.id }, htmlAttributes: new { @class = "btn btn-sm btn-info fa fa-bar-chart fa-lg" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <script>
-    $(document).ready(function () {
-        $('#dtable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    text: 'Create New',
-                    className: 'btn btn-primary',
-                    action: function (e, dt, node, config) {
-                        window.location.href += 'Story/Create/';
-                    }
-                }
-            ]});
-    });
-
+    var nextLocation = 'Story/Create/';
     $(function () {
-        $(".fa-pencil-square-o").tooltip({
-            placement: "top",
-            title: "Edit"
-        });
-        $(".fa-trash-o").tooltip({
-            placement: "top",
-            title: "Delete"
-        });
         $(".fa-tasks").tooltip({
             placement: "top",
             title: "Tasks"
@@ -80,3 +86,5 @@
         });
     });
 </script>
+
+<script src="~/Scripts/datatable-button-tooltip.js"></script>

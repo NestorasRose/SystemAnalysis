@@ -11,31 +11,43 @@
 <div>
     <h4>File</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.Raw(Model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.Description)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index", new { storyId = storyId, taskId = Model.TaskId })
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3>@Html.Raw(Model.Name)</h3>
+            </div>
         </div>
-    }
+
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.Description)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.Description)
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="panel-body">
+            <div class="col-md-2">
+                <h4>@Html.DisplayNameFor(model => model.FileType)</h4>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.FileType)
+            </div>
+        </div>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="panel-footer form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index", new { storyId = storyId, taskId = Model.TaskId })
+            </div>
+        }
+    </div>
 </div>

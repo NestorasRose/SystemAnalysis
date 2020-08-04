@@ -140,7 +140,6 @@
     <Compile Include="Controllers\DiagramController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SaveController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="DAL\TaskContext.cs" />
@@ -208,21 +207,121 @@
     <Compile Include="Migrations\202007060937404_addTaskETA.designer.cs">
       <DependentUpon>202007060937404_addTaskETA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007080632449_AddStoryIteration.cs" />
+    <Compile Include="Migrations\202007080632449_AddStoryIteration.designer.cs">
+      <DependentUpon>202007080632449_AddStoryIteration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\File.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="DAL\TaskInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aos\node_modules\aos\dist\aos.cjs.js" />
+    <Content Include="aos\node_modules\aos\dist\aos.css" />
+    <Content Include="aos\node_modules\aos\dist\aos.esm.js" />
+    <Content Include="aos\node_modules\aos\dist\aos.js" />
+    <Content Include="aos\node_modules\aos\src\js\aos.js" />
+    <Content Include="aos\node_modules\aos\src\js\helpers\detector.js" />
+    <Content Include="aos\node_modules\aos\src\js\helpers\elements.js" />
+    <Content Include="aos\node_modules\aos\src\js\helpers\getInlineOption.js" />
+    <Content Include="aos\node_modules\aos\src\js\helpers\handleScroll.js" />
+    <Content Include="aos\node_modules\aos\src\js\helpers\offsetCalculator.js" />
+    <Content Include="aos\node_modules\aos\src\js\helpers\prepare.js" />
+    <Content Include="aos\node_modules\aos\src\js\libs\observer.js" />
+    <Content Include="aos\node_modules\aos\src\js\libs\offset.js" />
+    <Content Include="aos\node_modules\classlist-polyfill\src\index.js" />
+    <Content Include="aos\node_modules\classlist-polyfill\tests\qunit.html" />
+    <Content Include="aos\node_modules\classlist-polyfill\tests\remove.js" />
+    <Content Include="aos\node_modules\classlist-polyfill\tests\tests.js" />
+    <Content Include="aos\node_modules\lodash.debounce\index.js" />
+    <Content Include="aos\node_modules\lodash.throttle\index.js" />
+    <Content Include="ckeditor5-build-classic\ckeditor.js" />
+    <Content Include="ckeditor5-build-classic\index.html" />
+    <Content Include="ckeditor5-build-classic\sample\css\sample.css" />
+    <Content Include="ckeditor5-build-classic\sample\img\bg.png" />
+    <Content Include="ckeditor5-build-classic\sample\img\github.svg" />
+    <Content Include="ckeditor5-build-classic\sample\img\logo.svg" />
+    <Content Include="ckeditor5-build-classic\sample\img\umbrellas.jpg" />
+    <Content Include="ckeditor5-build-classic\translations\af.js" />
+    <Content Include="ckeditor5-build-classic\translations\ar.js" />
+    <Content Include="ckeditor5-build-classic\translations\ast.js" />
+    <Content Include="ckeditor5-build-classic\translations\az.js" />
+    <Content Include="ckeditor5-build-classic\translations\bg.js" />
+    <Content Include="ckeditor5-build-classic\translations\ca.js" />
+    <Content Include="ckeditor5-build-classic\translations\cs.js" />
+    <Content Include="ckeditor5-build-classic\translations\da.js" />
+    <Content Include="ckeditor5-build-classic\translations\de-ch.js" />
+    <Content Include="ckeditor5-build-classic\translations\de.js" />
+    <Content Include="ckeditor5-build-classic\translations\el.js" />
+    <Content Include="ckeditor5-build-classic\translations\en-au.js" />
+    <Content Include="ckeditor5-build-classic\translations\en-gb.js" />
+    <Content Include="ckeditor5-build-classic\translations\eo.js" />
+    <Content Include="ckeditor5-build-classic\translations\es.js" />
+    <Content Include="ckeditor5-build-classic\translations\et.js" />
+    <Content Include="ckeditor5-build-classic\translations\eu.js" />
+    <Content Include="ckeditor5-build-classic\translations\fa.js" />
+    <Content Include="ckeditor5-build-classic\translations\fi.js" />
+    <Content Include="ckeditor5-build-classic\translations\fr.js" />
+    <Content Include="ckeditor5-build-classic\translations\gl.js" />
+    <Content Include="ckeditor5-build-classic\translations\gu.js" />
+    <Content Include="ckeditor5-build-classic\translations\he.js" />
+    <Content Include="ckeditor5-build-classic\translations\hr.js" />
+    <Content Include="ckeditor5-build-classic\translations\hu.js" />
+    <Content Include="ckeditor5-build-classic\translations\id.js" />
+    <Content Include="ckeditor5-build-classic\translations\it.js" />
+    <Content Include="ckeditor5-build-classic\translations\ja.js" />
+    <Content Include="ckeditor5-build-classic\translations\km.js" />
+    <Content Include="ckeditor5-build-classic\translations\kn.js" />
+    <Content Include="ckeditor5-build-classic\translations\ko.js" />
+    <Content Include="ckeditor5-build-classic\translations\ku.js" />
+    <Content Include="ckeditor5-build-classic\translations\lt.js" />
+    <Content Include="ckeditor5-build-classic\translations\lv.js" />
+    <Content Include="ckeditor5-build-classic\translations\ms.js" />
+    <Content Include="ckeditor5-build-classic\translations\nb.js" />
+    <Content Include="ckeditor5-build-classic\translations\ne.js" />
+    <Content Include="ckeditor5-build-classic\translations\nl.js" />
+    <Content Include="ckeditor5-build-classic\translations\no.js" />
+    <Content Include="ckeditor5-build-classic\translations\oc.js" />
+    <Content Include="ckeditor5-build-classic\translations\pl.js" />
+    <Content Include="ckeditor5-build-classic\translations\pt-br.js" />
+    <Content Include="ckeditor5-build-classic\translations\pt.js" />
+    <Content Include="ckeditor5-build-classic\translations\ro.js" />
+    <Content Include="ckeditor5-build-classic\translations\ru.js" />
+    <Content Include="ckeditor5-build-classic\translations\si.js" />
+    <Content Include="ckeditor5-build-classic\translations\sk.js" />
+    <Content Include="ckeditor5-build-classic\translations\sl.js" />
+    <Content Include="ckeditor5-build-classic\translations\sq.js" />
+    <Content Include="ckeditor5-build-classic\translations\sr-latn.js" />
+    <Content Include="ckeditor5-build-classic\translations\sr.js" />
+    <Content Include="ckeditor5-build-classic\translations\sv.js" />
+    <Content Include="ckeditor5-build-classic\translations\th.js" />
+    <Content Include="ckeditor5-build-classic\translations\tr.js" />
+    <Content Include="ckeditor5-build-classic\translations\tt.js" />
+    <Content Include="ckeditor5-build-classic\translations\ug.js" />
+    <Content Include="ckeditor5-build-classic\translations\uk.js" />
+    <Content Include="ckeditor5-build-classic\translations\vi.js" />
+    <Content Include="ckeditor5-build-classic\translations\zh-cn.js" />
+    <Content Include="ckeditor5-build-classic\translations\zh.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\grapheditor.css" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_asc_disabled.png" />
+    <Content Include="images\sort_both.png" />
+    <Content Include="images\sort_desc.png" />
+    <Content Include="images\sort_desc_disabled.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\masonry.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -501,10 +600,46 @@
     <Content Include="jgraph\src\resources\graph.txt" />
     <Content Include="jgraph\src\resources\graph_de.txt" />
     <Content Include="jgraph\src\resources\graph_zh.txt" />
+    <Content Include="Scripts\apexcharts.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="jgraph\examples\grapheditor\README" />
+    <Content Include="Scripts\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\dataTables.buttons.min.js" />
+    <Content Include="Scripts\diagram-ajax.js" />
+    <Content Include="Scripts\datatable-button-tooltip.js" />
+    <Content Include="Scripts\font-awesome-4.7.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\search-datatable-tooltip.js" />
+    <Content Include="ckeditor5-build-classic\ckeditor.js.map" />
+    <Content Include="ckeditor5-build-classic\LICENSE.md" />
+    <Content Include="ckeditor5-build-classic\README.md" />
+    <Content Include="aos\node_modules\aos\dist\aos.js.map" />
+    <Content Include="aos\node_modules\aos\LICENSE" />
+    <Content Include="aos\node_modules\aos\package.json" />
+    <Content Include="aos\node_modules\aos\README.md" />
+    <Content Include="aos\node_modules\aos\src\sass\aos.scss" />
+    <Content Include="aos\node_modules\aos\src\sass\_animations.scss" />
+    <Content Include="aos\node_modules\aos\src\sass\_core.scss" />
+    <Content Include="aos\node_modules\aos\src\sass\_easing.scss" />
+    <Content Include="aos\node_modules\classlist-polyfill\.travis.yml" />
+    <Content Include="aos\node_modules\classlist-polyfill\bower.json" />
+    <Content Include="aos\node_modules\classlist-polyfill\CHANGELOG.md" />
+    <Content Include="aos\node_modules\classlist-polyfill\LICENSE" />
+    <Content Include="aos\node_modules\classlist-polyfill\package.json" />
+    <Content Include="aos\node_modules\classlist-polyfill\README.md" />
+    <Content Include="aos\node_modules\classlist-polyfill\script\test" />
+    <Content Include="aos\node_modules\classlist-polyfill\tests\runner.coffee" />
+    <Content Include="aos\node_modules\lodash.debounce\LICENSE" />
+    <Content Include="aos\node_modules\lodash.debounce\package.json" />
+    <Content Include="aos\node_modules\lodash.debounce\README.md" />
+    <Content Include="aos\node_modules\lodash.throttle\LICENSE" />
+    <Content Include="aos\node_modules\lodash.throttle\package.json" />
+    <Content Include="aos\node_modules\lodash.throttle\README.md" />
+    <Content Include="aos\package-lock.json" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chartsRendering.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -516,6 +651,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\string.format.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -541,9 +677,9 @@
     <Content Include="Views\Story\Edit.cshtml" />
     <Content Include="Views\Story\Index.cshtml" />
     <Content Include="Views\Diagram\Index.cshtml" />
-    <Content Include="Views\Story\Home.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Task\Details.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -606,6 +742,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007060937404_addTaskETA.resx">
       <DependentUpon>202007060937404_addTaskETA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007080632449_AddStoryIteration.resx">
+      <DependentUpon>202007080632449_AddStoryIteration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

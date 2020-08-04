@@ -21,6 +21,19 @@ namespace Task1.Controllers
             return View(db.Stories.ToList());
         }
 
+        public ActionResult IndexJson()
+        {
+            var stories = db.Stories.ToList();
+            var data = db.Stories.Where(s => s.Tasks.Count > 0).Select(s => new 
+            {
+                id = s.id,
+                name = s.name,
+                taskTotalHours = s.Tasks.Sum(t => t.eta),
+                iteration = s.iteration
+            }).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Diagram(int id)
         {
             return View(db.Stories.Where(s => s.id == id).FirstOrDefault().diagram);
@@ -38,7 +51,7 @@ namespace Task1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,description")] Story story)
+        public ActionResult Create(Story story)
         {
             if (ModelState.IsValid)
             {
@@ -51,12 +64,8 @@ namespace Task1.Controllers
         }
 
         // GET: Stories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Story story = db.Stories.Find(id);
             if (story == null)
             {
@@ -70,7 +79,7 @@ namespace Task1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,description")] Story story)
+        public ActionResult Edit(Story story)
         {
             if (ModelState.IsValid)
             {
@@ -82,12 +91,8 @@ namespace Task1.Controllers
         }
 
         // GET: Stories/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Story story = db.Stories.Find(id);
             if (story == null)
             {
